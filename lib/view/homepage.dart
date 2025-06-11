@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lottie/lottie.dart';
+import 'package:post_api/view/addpostpage.dart';
 import 'package:provider/provider.dart';
 import '../provider/home_provider.dart';
 
@@ -26,7 +28,18 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => AddPostPage()),
+              );
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
+        backgroundColor: Colors.white,
         elevation: 0,
         scrolledUnderElevation: 0.0,
         title: Text(
@@ -57,7 +70,6 @@ class _HomePageState extends State<HomePage> {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            // '_User id${post.title}
                             'User id',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
@@ -75,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                         height: 300,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(12),
-                          // ✅ Border radius here
+
                           child: Image.network(post.imgUrl, fit: BoxFit.cover),
                         ),
                       ),
@@ -109,11 +121,19 @@ class _HomePageState extends State<HomePage> {
                             SizedBox(width: 15),
                             GestureDetector(
                               onTap: () {
-                                provider..dislikePost(index);
+                                provider.disLikePost(index);
                               },
                               child: Row(
                                 children: [
-                                  Icon(Icons.thumb_down_alt_outlined, size: 23),
+                                  Icon(
+                                    post.isDisliked
+                                        ? Icons.thumb_down
+                                        : Icons.thumb_down_alt_outlined,
+                                    color: post.isDisliked
+                                        ? Colors.grey.shade600
+                                        : Colors.black,
+                                  ),
+
                                   SizedBox(width: 5),
                                   Text(
                                     '${post.reactions.dislikes}',

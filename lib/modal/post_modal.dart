@@ -9,6 +9,7 @@ class Post {
   String imgUrl;
   bool isLiked;
   bool isDisliked;
+  bool showLikeAnimation = false;
 
   Post({
     required this.id,
@@ -20,7 +21,7 @@ class Post {
     required this.userId,
     required this.imgUrl,
     this.isLiked = false,
-    this.isDisliked= false,
+    this.isDisliked = false,
   });
 
   factory Post.fromJson(Map<String, dynamic> json) {
@@ -45,6 +46,7 @@ class Post {
       reactions.dislikes--;
     }
   }
+
   void dislike() {
     reactions.dislikes--;
   }
