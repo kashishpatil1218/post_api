@@ -223,45 +223,11 @@ class _AddPostPageState extends State<AddPostPage> {
               ),
 
               SizedBox(height: 180),
-
-              // Align(
-              //   alignment: Alignment.center,
-              //   child: ElevatedButton(
-              //     onPressed: _submitPost,
-              //     style: ElevatedButton.styleFrom(
-              //       backgroundColor: Colors.white10,
-              //       shape: ContinuousRectangleBorder(
-              //         borderRadius: BorderRadiusGeometry.circular(10),
-              //       ),
-              //       padding: EdgeInsets.only(
-              //         left: 20,
-              //         right: 20,
-              //         top: 5,
-              //         bottom: 5,
-              //       ),
-              //     ),
-              //     child: Text(
-              //       'Post',
-              //       style: TextStyle(fontSize: 18, color: Colors.black),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Colors.white10,
-      //   onPressed: () => _submitPost(),
-      //   child: Text(
-      //     'Post',
-      //     style: TextStyle(
-      //       color: Colors.black,
-      //       fontSize: 15,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //   ),
-      // ),
+
       floatingActionButton: Padding(
         padding: EdgeInsets.only(left: 35),
         child: GestureDetector(

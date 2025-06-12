@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (_) => AddPostPage()),
               );
             },
-            icon: Icon(Icons.post_add_sharp,size: 30,color: Colors.black,),
+            icon: Icon(Icons.post_add_sharp, size: 30, color: Colors.black),
           ),
         ],
         backgroundColor: Colors.white,
