@@ -62,7 +62,15 @@ class _AddPostPageState extends State<AddPostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: false,
+
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back_ios_new_rounded),
+        ),
         backgroundColor: Colors.white,
         scrolledUnderElevation: 0,
         title: Text(
@@ -76,7 +84,7 @@ class _AddPostPageState extends State<AddPostPage> {
           child: Column(
             children: [
               Container(
-                height: 300,
+                height: 250,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.black12,
@@ -84,57 +92,70 @@ class _AddPostPageState extends State<AddPostPage> {
                 ),
                 child: imageUrlController.text.isEmpty
                     ? IconButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          content: TextField(
-                            controller: imageUrlController,
-                            decoration: InputDecoration(labelText: 'Image URL'),
-                          ),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                setState(() {});
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('Save'),
-                            ),
-                          ],
-                          title: Text(
-                            'Add Image Url',
-                            style: TextStyle(color: Colors.black, fontSize: 15),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  icon: Icon(Icons.add, size: 35),
-                )
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: TextField(
+                                  controller: imageUrlController,
+                                  decoration: InputDecoration(
+                                    labelText: 'Image URL',
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {});
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Save'),
+                                  ),
+                                ],
+                                title: Text(
+                                  'Add Image Url',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                        icon: Icon(Icons.add, size: 35),
+                      )
                     : ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    imageUrlController.text,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Center(
-                      child: Icon(Icons.broken_image, size: 50, color: Colors.grey),
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          imageUrlController.text,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => Center(
+                            child: Icon(
+                              Icons.broken_image,
+                              size: 50,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ),
+              ),
+
+              SizedBox(height: 25),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Title',
+                    style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
-
-              SizedBox(height: 10),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  'Title',
-                  style: TextStyle(
-                    color: Colors.grey.shade700,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+              SizedBox(height: 5),
               Card(
                 color: Colors.white,
                 child: Padding(
@@ -160,17 +181,21 @@ class _AddPostPageState extends State<AddPostPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 12),
+              SizedBox(height: 20),
               Align(
                 alignment: Alignment.topLeft,
-                child: Text(
-                  'Post Body',
-                  style: TextStyle(
-                    color: Colors.grey.shade700,
-                    fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text(
+                    'Post Body',
+                    style: TextStyle(
+                      color: Colors.grey.shade700,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
+              SizedBox(height: 5),
               Card(
                 color: Colors.white,
                 child: Padding(
@@ -199,29 +224,65 @@ class _AddPostPageState extends State<AddPostPage> {
 
               SizedBox(height: 180),
 
-              Align(
-                alignment: Alignment.center,
-                child: ElevatedButton(
-                  onPressed: _submitPost,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white10,
-                    shape: ContinuousRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(10),
-                    ),
-                    padding: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
-                      top: 5,
-                      bottom: 5,
-                    ),
-                  ),
-                  child: Text(
-                    'Post',
-                    style: TextStyle(fontSize: 18, color: Colors.black),
-                  ),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: ElevatedButton(
+              //     onPressed: _submitPost,
+              //     style: ElevatedButton.styleFrom(
+              //       backgroundColor: Colors.white10,
+              //       shape: ContinuousRectangleBorder(
+              //         borderRadius: BorderRadiusGeometry.circular(10),
+              //       ),
+              //       padding: EdgeInsets.only(
+              //         left: 20,
+              //         right: 20,
+              //         top: 5,
+              //         bottom: 5,
+              //       ),
+              //     ),
+              //     child: Text(
+              //       'Post',
+              //       style: TextStyle(fontSize: 18, color: Colors.black),
+              //     ),
+              //   ),
+              // ),
+            ],
+          ),
+        ),
+      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: Colors.white10,
+      //   onPressed: () => _submitPost(),
+      //   child: Text(
+      //     'Post',
+      //     style: TextStyle(
+      //       color: Colors.black,
+      //       fontSize: 15,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      // ),
+      floatingActionButton: Padding(
+        padding: EdgeInsets.only(left: 35),
+        child: GestureDetector(
+          onTap: () => _submitPost(),
+          child: Container(
+            height: 45,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.black12,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Center(
+              child: Text(
+                'Post',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
                 ),
               ),
-            ],
+            ),
           ),
         ),
       ),
