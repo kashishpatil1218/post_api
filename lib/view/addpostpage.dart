@@ -82,7 +82,8 @@ class _AddPostPageState extends State<AddPostPage> {
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: IconButton(
+                child: imageUrlController.text.isEmpty
+                    ? IconButton(
                   onPressed: () {
                     showDialog(
                       context: context,
@@ -95,6 +96,7 @@ class _AddPostPageState extends State<AddPostPage> {
                           actions: [
                             TextButton(
                               onPressed: () {
+                                setState(() {});
                                 Navigator.of(context).pop();
                               },
                               child: Text('Save'),
@@ -109,8 +111,19 @@ class _AddPostPageState extends State<AddPostPage> {
                     );
                   },
                   icon: Icon(Icons.add, size: 35),
+                )
+                    : ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Image.network(
+                    imageUrlController.text,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Center(
+                      child: Icon(Icons.broken_image, size: 50, color: Colors.grey),
+                    ),
+                  ),
                 ),
               ),
+
               SizedBox(height: 10),
               Align(
                 alignment: Alignment.topLeft,
