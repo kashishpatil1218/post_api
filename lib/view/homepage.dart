@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       body: provider.isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-        itemCount: provider.posts.length,
+              itemCount: provider.posts.length,
               itemBuilder: (context, index) {
                 final post = provider.posts[index];
                 return Column(
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                         vertical: 4,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(top: 5, left:4 ),
+                        padding: EdgeInsets.only(top: 5, left: 4),
                         child: Row(
                           children: [
                             GestureDetector(
@@ -115,6 +115,17 @@ class _HomePageState extends State<HomePage> {
                                     color: post.isLiked
                                         ? Colors.red
                                         : Colors.black,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
+                                    child: Text(
+                                      '${post.reactions.likes} likes',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
@@ -149,14 +160,6 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ],
                         ),
-                      ),
-                    ),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Text(
-                        '${post.reactions.likes} likes',
-                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
 

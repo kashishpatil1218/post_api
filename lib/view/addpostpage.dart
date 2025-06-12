@@ -61,29 +61,153 @@ class _AddPostPageState extends State<AddPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Create Post')),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        scrolledUnderElevation: 0,
+        title: Text(
+          'Create Post',
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              TextField(
-                controller: titleController,
-                decoration: InputDecoration(labelText: 'Post Title'),
+              Container(
+                height: 300,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.black12,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          content: TextField(
+                            controller: imageUrlController,
+                            decoration: InputDecoration(labelText: 'Image URL'),
+                          ),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('Save'),
+                            ),
+                          ],
+                          title: Text(
+                            'Add Image Url',
+                            style: TextStyle(color: Colors.black, fontSize: 15),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  icon: Icon(Icons.add, size: 35),
+                ),
+              ),
+              SizedBox(height: 10),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Title',
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: TextField(
+                    style: TextStyle(fontSize: 15),
+                    cursorColor: Colors.black,
+                    controller: titleController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 10,
+                      ),
+                      border: InputBorder.none,
+                      hint: Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          'Add Title',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
               SizedBox(height: 12),
-              TextField(
-                controller: bodyController,
-                decoration: InputDecoration(labelText: 'Post Body'),
-                maxLines: 3,
+              Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Post Body',
+                  style: TextStyle(
+                    color: Colors.grey.shade700,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              SizedBox(height: 12),
-              TextField(
-                controller: imageUrlController,
-                decoration: InputDecoration(labelText: 'Image URL'),
+              Card(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: TextField(
+                    style: TextStyle(fontSize: 15),
+                    cursorColor: Colors.black,
+                    controller: bodyController,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.symmetric(
+                        horizontal: 15,
+                        vertical: 10,
+                      ),
+                      border: InputBorder.none,
+                      hint: Padding(
+                        padding: EdgeInsets.only(left: 10),
+                        child: Text(
+                          'Add discription',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ),
-              SizedBox(height: 20),
-              ElevatedButton(onPressed: _submitPost, child: Text('Post')),
+
+              SizedBox(height: 180),
+
+              Align(
+                alignment: Alignment.center,
+                child: ElevatedButton(
+                  onPressed: _submitPost,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white10,
+                    shape: ContinuousRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(10),
+                    ),
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                      top: 5,
+                      bottom: 5,
+                    ),
+                  ),
+                  child: Text(
+                    'Post',
+                    style: TextStyle(fontSize: 18, color: Colors.black),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
