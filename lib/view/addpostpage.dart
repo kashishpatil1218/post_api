@@ -29,7 +29,6 @@ class _AddPostPageState extends State<AddPostPage> {
 
     final newPost = Post(
       id: DateTime.now().millisecondsSinceEpoch,
-      // temporary unique ID
       title: title,
       body: body,
       imgUrl: imgUrl,

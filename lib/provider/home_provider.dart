@@ -17,7 +17,7 @@ class PostProvider extends ChangeNotifier {
 
     try {
       final response = await http.get(
-        Uri.parse('https://dummyjson.com/posts/add'),
+        Uri.parse('https://dummyjson.com/posts'),
       );
 
       if (response.statusCode == 200) {

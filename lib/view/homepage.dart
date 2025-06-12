@@ -50,6 +50,7 @@ class _HomePageState extends State<HomePage> {
       body: provider.isLoading
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
+        itemCount: provider.posts.length,
               itemBuilder: (context, index) {
                 final post = provider.posts[index];
                 return Column(
@@ -98,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                         vertical: 4,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.only(top: 5, left: 3),
+                        padding: EdgeInsets.only(top: 5, left:4 ),
                         child: Row(
                           children: [
                             GestureDetector(
@@ -109,8 +110,8 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   Icon(
                                     post.isLiked
-                                        ? Icons.favorite
-                                        : Icons.favorite_border,
+                                        ? Icons.thumb_up
+                                        : Icons.thumb_up_alt_outlined,
                                     color: post.isLiked
                                         ? Colors.red
                                         : Colors.black,
