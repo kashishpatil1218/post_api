@@ -91,40 +91,42 @@ class _AddPostPageState extends State<AddPostPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: imageUrlController.text.isEmpty
-                    ? IconButton(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) {
-                              return AlertDialog(
-                                content: TextField(
-                                  controller: imageUrlController,
-                                  decoration: InputDecoration(
-                                    labelText: 'Image URL',
-                                  ),
+              ? GestureDetector(
+                    onTap: ()
+                       {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              content: TextField(
+                                controller: imageUrlController,
+                                decoration: InputDecoration(
+                                  labelText: 'Image URL',
                                 ),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      setState(() {});
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('Save'),
-                                  ),
-                                ],
-                                title: Text(
-                                  'Add Image Url',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                  ),
+                              ),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                    setState(() {});
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text('Save'),
                                 ),
-                              );
-                            },
-                          );
-                        },
-                        icon: Icon(Icons.add, size: 35),
-                      )
+                              ],
+                              title: Text(
+                                'Add Image Url',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 15,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+
+                    },
+                    child: Icon(Icons.add,size: 35,color: Colors.grey,))
+
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.network(
